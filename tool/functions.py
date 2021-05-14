@@ -9,13 +9,13 @@ def taking_Attendance(Upload_folder, todays_attendace, attendance_register, date
     columns = list(attendance_register.columns.values)
     total_students = list(attendance_register['Roll No.'])
     students = list(todays_attendace['Roll No.'])
-    date = list(todays_attendace['Date'])
+    date = list(todays_attendace['Timestamp'])
     todays_attendace['Date'] = [str(i).split(' ')[0] for i in date]
-    date = list(todays_attendace['Date'])
+    date = list(todays_attendace['Timestamp'])
     date = list(set(date))
     date.sort()
     for i in date:
-        presented_total_students = todays_attendace['Date'] == i
+        presented_total_students = todays_attendace['Timestamp'] == i
         presented_total_students = todays_attendace.loc[presented_total_students]
         presented_total_students = presented_total_students['Roll No.'].to_list(
         )
