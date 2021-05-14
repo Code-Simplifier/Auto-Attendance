@@ -1,0 +1,93 @@
+{% extends 'base.html' %} {% block content %}
+
+<center>
+  <div class="mt-5 col-md-8">
+    <h1 class="display-3">Auto Attendance</h1>
+    <small>To make your life simpler</small><br>
+    <small class="text-muted">by Gurshabad Singh Lehal, MGN Public School UE-2</small>
+    <hr />
+    <form action="/" method="POST" enctype="multipart/form-data">
+      <div class="bg-light">
+        <div class="m-2">
+          <label for="formFile" class="form-label mt-2"
+            >Upload your today's attendance register (.csv or .xlsx)</label
+          >
+          <input class="form-control" type="file" name="day_file" />
+        </div>
+        <div class="m-2">
+          <label for="formFile" class="form-label mt-4"
+            >Upload your main attendance register (.csv or .xlsx)</label
+          >
+          <input class="form-control" type="file" name="register_file" />
+        </div>
+      </div>
+      <hr />
+      <button
+        class="btn btn-outline-primary col-md-4"
+        type="submit"
+        value="Upload"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</center>
+
+<div class="position-absolute bottom-0">
+  <button
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#infoModal"
+    style="border: none; background: none"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="40"
+      fill="currentColor"
+      class="bi bi-info-square-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+      />
+    </svg>
+  </button>
+</div>
+<div
+  class="modal fade"
+  id="infoModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">How to use this tool</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Though the required inputs are already specified in the form, there are
+        som restrictions on the input given. For instance :-<br /><br />
+        In both the files, there should atleast be a roll number column and in
+        today's attendance file must contain a date colmun and
+        <b>they must be written</b> as: <br /><br />
+        <img class="mt-1" src="{{ url_for('static', filename='day.png') }}" />
+        <br /><br />
+        <img src="{{ url_for('static', filename='register.png') }}" /> <br />
+        The order of the columns isn't important and all the remaining colmuns
+        (if any) will be added as it is. Your output file should look like this:
+        <br /><br />
+        <img src="{{ url_for('static', filename='result.png') }}" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
